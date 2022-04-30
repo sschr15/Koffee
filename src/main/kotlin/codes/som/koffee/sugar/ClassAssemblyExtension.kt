@@ -5,6 +5,7 @@ import codes.som.koffee.MethodAssembly
 import codes.som.koffee.insns.jvm.aload_0
 import codes.som.koffee.insns.jvm.invokespecial
 import codes.som.koffee.modifiers.Modifiers
+import codes.som.koffee.sugar.MethodAssemblyExtension.call_super
 import codes.som.koffee.types.TypeLike
 import org.objectweb.asm.tree.MethodNode
 import java.lang.IllegalArgumentException
@@ -24,8 +25,7 @@ public object ClassAssemblyExtension {
         }
 
         return method(access, "<init>", void, *parameterTypes) {
-            aload_0
-            invokespecial(superClass, "<init>", void, *superParams)
+            call_super(superClass)
             routine()
         }
     }
